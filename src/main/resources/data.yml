@@ -1,0 +1,6 @@
+Webhook:
+  Enabled: true
+  URL: 'https://discord.com/api/webhooks/966760613923663972/DFyucqagQ4oP8iL3p5bmtWfSMe8MjWgw5utE0t_MmI6zaf4jkKimMtryaplRaF2ewfC8'
+  PlayerJoin: '{PLAYER} joined the server.'
+  PlayerQuit: '{PLAYER} left the server.'
+  Message: '<{PLAYER}> {MESSAGE}'

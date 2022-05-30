@@ -1,0 +1,5 @@
+name: LeanCore
+description: Core plugin for the Lean SMP server.
+author: Amelia
+version: 1.0.0
+main: me.amelia.leancore.Main
