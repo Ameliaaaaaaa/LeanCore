@@ -7,7 +7,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 public class AsyncPlayerChat implements Listener {
 
@@ -32,10 +31,8 @@ public class AsyncPlayerChat implements Listener {
 
         try {
             webhook.execute();
-        } catch (MalformedURLException ex) {
-            System.out.println("Invalid webhook URL");
         } catch (IOException ex) {
-            ex.printStackTrace();
+            throw new RuntimeException(ex);
         }
     }
 

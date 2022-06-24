@@ -26,8 +26,6 @@ public class Main extends JavaPlugin {
     }
 
     public void registerRecipes() {
-        ChunkLoader chunkLoader = new ChunkLoader(this);
-
-        chunkLoader.registerRecipe();
+        new ChunkLoader(this).registerRecipe();
     }
 }
