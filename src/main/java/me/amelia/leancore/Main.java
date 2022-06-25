@@ -1,5 +1,6 @@
 package me.amelia.leancore;
 
+import me.amelia.leancore.Commands.EnchantCommand;
 import me.amelia.leancore.Commands.TabCompletion;
 import me.amelia.leancore.Enchants.Manager;
 import me.amelia.leancore.Listeners.*;
@@ -42,6 +43,7 @@ public class Main extends JavaPlugin {
     }
 
     public void registerCommands() {
+        new EnchantCommand(this);
         new TabCompletion(this);
     }
 
