@@ -9,7 +9,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import java.io.IOException;
 
 public class AsyncPlayerChat implements Listener {
-
     private final Main plugin;
 
     public AsyncPlayerChat(Main plugin) {
@@ -17,14 +16,14 @@ public class AsyncPlayerChat implements Listener {
     }
 
     @EventHandler
-    public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
-        if (!plugin.getConfig().getBoolean("Webhook.Enabled")) return;
+    public void onAsyncPlayerChat(AsyncPlayerChatEvent event) {
+        if (!this.plugin.getConfig().getBoolean("Webhook.Enabled")) return;
 
-        Webhook webhook = new Webhook(plugin.getConfig().getString("Webhook.URL"));
+        Webhook webhook = new Webhook(this.plugin.getConfig().getString("Webhook.URL"));
 
-        String message = plugin.getConfig().getString("Webhook.Message").replace("{PLAYER}", e.getPlayer().getDisplayName());
+        String message = this.plugin.getConfig().getString("Webhook.Message").replace("{PLAYER}", event.getPlayer().getDisplayName());
 
-        message = message.replace("{MESSAGE}", e.getMessage());
+        message = message.replace("{MESSAGE}", event.getMessage());
 
         webhook.setUsername("Lean");
         webhook.setContent(message);

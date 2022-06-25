@@ -9,7 +9,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import java.io.IOException;
 
 public class PlayerJoin implements Listener {
-
     private final Main plugin;
 
     public PlayerJoin(Main plugin) {
@@ -17,13 +16,13 @@ public class PlayerJoin implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
-        if (!plugin.getConfig().getBoolean("Webhook.Enabled")) return;
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        if (!this.plugin.getConfig().getBoolean("Webhook.Enabled")) return;
 
-        Webhook webhook = new Webhook(plugin.getConfig().getString("Webhook.URL"));
+        Webhook webhook = new Webhook(this.plugin.getConfig().getString("Webhook.URL"));
 
         webhook.setUsername("Lean");
-        webhook.setContent(plugin.getConfig().getString("Webhook.PlayerJoin").replace("{PLAYER}", e.getPlayer().getDisplayName()));
+        webhook.setContent(this.plugin.getConfig().getString("Webhook.PlayerJoin").replace("{PLAYER}", event.getPlayer().getDisplayName()));
 
         try {
             webhook.execute();

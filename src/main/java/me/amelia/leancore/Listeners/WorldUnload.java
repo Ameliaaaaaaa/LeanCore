@@ -5,8 +5,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldUnloadEvent;
 
 public class WorldUnload implements Listener {
+
     @EventHandler
-    public void onWorldUnload(WorldUnloadEvent e) {
-        e.setCancelled(true);
+    public void onWorldUnload(WorldUnloadEvent event) {
+        event.setCancelled(true);
     }
+
 }
