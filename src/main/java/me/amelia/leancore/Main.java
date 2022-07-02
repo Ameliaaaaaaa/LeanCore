@@ -3,6 +3,7 @@ package me.amelia.leancore;
 import me.amelia.leancore.Commands.EnchantCommand;
 import me.amelia.leancore.Commands.TabCompletion;
 import me.amelia.leancore.Enchants.Manager;
+import me.amelia.leancore.GUIs.EnchantsGUI;
 import me.amelia.leancore.Listeners.*;
 import me.amelia.leancore.Recipes.ChunkLoader;
 import me.despical.commandframework.CommandFramework;
@@ -13,6 +14,8 @@ public class Main extends JavaPlugin {
 
     public Manager enchantsManager;
 
+    public EnchantsGUI enchantsGUI;
+
     public void onEnable() {
         this.setupConfig();
         this.registerListeners();
@@ -20,6 +23,8 @@ public class Main extends JavaPlugin {
 
         this.commands = new CommandFramework(this);
         this.enchantsManager = new Manager(this);
+
+        this.enchantsGUI = new EnchantsGUI(this);
 
         this.registerCommands();
     }
@@ -53,5 +58,9 @@ public class Main extends JavaPlugin {
 
     public Manager getEnchantsManager() {
         return this.enchantsManager;
+    }
+
+    public EnchantsGUI getEnchantsGUI () {
+        return this.enchantsGUI;
     }
 }

@@ -1,6 +1,5 @@
 package me.amelia.leancore.Commands;
 
-import me.amelia.leancore.GUIs.Enchants;
 import me.amelia.leancore.Main;
 import me.despical.commandframework.CommandArguments;
 
@@ -21,9 +20,7 @@ public class EnchantCommand {
             usage = "/leancore enchant"
     )
     public void mainCommand(CommandArguments arguments) {
-        Enchants enchantsGui = new Enchants(this.plugin, arguments.getSender());
-
-        enchantsGui.openInventory();
+        this.plugin.getEnchantsGUI().openInventory(arguments.getSender());
     }
 
 }

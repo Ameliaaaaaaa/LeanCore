@@ -15,17 +15,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
 
-public class Enchants implements Listener {
+public class EnchantsGUI implements Listener {
     // Todo - Pull enchants automatically.
     private final Main plugin;
 
     private final Inventory inventory;
 
-    private final Player player;
-
-    public Enchants(Main plugin, Player player) {
+    public EnchantsGUI(Main plugin) {
         this.plugin = plugin;
-        this.player = player;
 
         this.inventory = Bukkit.createInventory(null, 27, ChatColor.LIGHT_PURPLE + "Enchants GUI");
 
@@ -54,8 +51,8 @@ public class Enchants implements Listener {
         return item;
     }
 
-    public void openInventory() {
-        this.player.openInventory(this.inventory);
+    public void openInventory(Player player) {
+        player.openInventory(this.inventory);
     }
 
     @EventHandler
@@ -68,19 +65,17 @@ public class Enchants implements Listener {
 
         if (clickedItem == null) return;
 
+        Player player = (Player) event.getWhoClicked();
+
         if (event.getRawSlot() == 13) {
-            ItemStack itemStack = this.player.getInventory().getItemInMainHand();
+            ItemStack itemStack = player.getInventory().getItemInMainHand();
 
             if (itemStack.getType() == Material.ELYTRA) {
                 this.plugin.getEnchantsManager().getPropelling().applyEnchant(itemStack);
             } else {
-                this.player.sendMessage(ChatColor.GOLD + "Propelling" + ChatColor.RED + " cannot be added to " + ChatColor.GOLD + itemStack.getType().name() + ChatColor.RED + ".");
+                player.sendMessage(ChatColor.GOLD + "Propelling" + ChatColor.RED + " cannot be added to " + ChatColor.GOLD + itemStack.getType().name() + ChatColor.RED + ".");
             }
         }
-
-        this.plugin.saveConfig();
-
-        this.initializeItems();
     }
 
     @EventHandler
